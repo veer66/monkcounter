@@ -1,5 +1,5 @@
 var assert = require("assert")
-var db = require('monk')('localhost/katin_test');
+var db = require('monk')('localhost/monk_counter_test');
 var counterCol = db.get('counter');
 require("../counter");
 
@@ -8,16 +8,11 @@ var Counter = require("../counter")(counterCol, "c1");
 describe('Counter', function() {
   describe('next()', function() {
     beforeEach(function(done) {
-      counterCol.remove({}, function(err) {
+      Counter.init(function(err) {
         if(err) {
           return done(err);
         }
-        Counter.init(function(err) {
-          if(err) {
-            return done(err);
-          }
-          done();
-        });
+        done();
       });
     });
 

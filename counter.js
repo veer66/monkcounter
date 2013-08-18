@@ -3,9 +3,15 @@ module.exports = function(col, name) {
     col: col,
     name: name,
     init: function(fn) {
-      this.col.insert({_id: this.name, seq: 1}, function(err, doc) {
-        fn(err);
-      });  
+      var name = this.name;
+      this.col.remove({_id:name}, function(err) {
+        if(err) {
+          return fn(err);
+        }
+        this.col.insert({_id: name, seq: 1}, function(err, doc) {
+          fn(err);
+        });
+      });
     },
     next: function(fn) {
       this.col.findAndModify(
