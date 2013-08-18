@@ -10,6 +10,7 @@ Usage
 
 # Initialize
 
+```javascript
   var db = require('monk')('localhost/test');
   var counterCol = db.get('counter');
   var counter  = require("monkcounter")(counterCol, "global");
@@ -20,8 +21,11 @@ Usage
       db.close();
     }
   });
+```
 
 # Count
+
+```javascript
   var db = require('monk')('localhost/test');
   var counterCol = db.get('counter');
   var counter  = require("monkcounter")(counterCol, "global");
@@ -32,3 +36,4 @@ Usage
       db.close();
     }
   });
+```
